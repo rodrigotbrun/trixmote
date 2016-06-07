@@ -49,8 +49,14 @@ public:
     // Escreve no arquivo de log
     void write(float data);
 
+    // Escreve no arquivo de log
+    void write(std::string data);
+
     // Escreve no arquivo de log e quebra a linha no final
     void writeln(int data);
+
+    // Escreve no arquivo de log e quebra a linha no final
+    void writeln(std::string data);
 
     // Escreve no arquivo de log e quebra a linha no final
     void writeln(float data);

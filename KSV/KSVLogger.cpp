@@ -1,5 +1,6 @@
-#include "Logger.h"
-#include "Presenter.h"
+#include "KSVLogger.h"
+#include "KSVPresenter.h"
+#include "KSVConfig.h"
 #include <iostream>
 
 using namespace std;
@@ -48,37 +49,65 @@ Logger *Logger::instance() {
 void Logger::write(const char *data) {
     fprintf(file, "%s", data);
     fflush(file);
-    std::cout << data;
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data;
+}
+
+void Logger::write(std::string data) {
+    fprintf(file, "%s", data.c_str());
+    fflush(file);
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data;
 }
 
 void Logger::write(int data) {
     fprintf(file, "%i", data);
     fflush(file);
-    std::cout << data;
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data;
 }
 
 void Logger::write(float data) {
     fprintf(file, "%f", data);
     fflush(file);
-    std::cout << data;
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data;
 }
 
 void Logger::writeln(const char *data) {
     fprintf(file, "%s\n", data);
     fflush(file);
-    std::cout << data << std::endl;
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data << std::endl;
+}
+
+void Logger::writeln(std::string data) {
+    fprintf(file, "%s\n", data.c_str());
+    fflush(file);
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data << std::endl;
 }
 
 void Logger::writeln(int data) {
     fprintf(file, "%i\n", data);
     fflush(file);
-    std::cout << data << std::endl;
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data << std::endl;
 }
 
 void Logger::writeln(float data) {
     fprintf(file, "%f\n", data);
     fflush(file);
-    std::cout << data << std::endl;
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data << std::endl;
 }
 
 void Logger::clearLogFile() {

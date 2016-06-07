@@ -1,4 +1,4 @@
-#include "Argumentation.h"
+#include "KSVArgumentation.h"
 #include <iostream>
 #include <cstring>
 
@@ -45,6 +45,7 @@ char *Argumentation::value(char *find) {
         if (vl[0] != '-' && vl[1] != '-') {
             return vl;
         }
+
     }
 
     return nullptr;

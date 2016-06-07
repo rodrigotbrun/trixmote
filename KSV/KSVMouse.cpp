@@ -1,4 +1,4 @@
-#include "Mouse.h"
+#include "KSVMouse.h"
 
 /**
  * Converte um tipo de mouse para uma string legível

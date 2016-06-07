@@ -1,7 +1,7 @@
-#include "Keylogger.h"
-#include "Keyboard.h"
-#include "Logger.h"
-#include "Mouse.h"
+#include "KSVKeylogger.h"
+#include "KSVKeyboard.h"
+#include "KSVLogger.h"
+#include "KSVMouse.h"
 #include <iostream>
 
 // executa ao criar a thread
