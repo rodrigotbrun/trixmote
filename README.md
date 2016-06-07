@@ -20,6 +20,9 @@ A estrutura de cada bloco de informação, contido no arquivo de saída (log) po
 - `[d:1432.18x-78.0664|1438.12x-78.0664|1446.3x-78.0664|1461.16x-78.0664|1478.26x-78.0664|1493.13x-78.0664|1503.54x-78.0664[left-drag]]`  
     - Este bloco indica um evento de clicar e arrastar usando o botão esquerdo do mouse, possue uma lista de cordenadas X e Y percorridas pelo mouse durante o "arrastar".
 
+- `[t:[T2xhIE11bmRvLCBCZW0gVmluZG8gYW8gS1NW]`
+    - Este bloco indica que um texto foi capturado da area de transferência, e esta codificado em base64.
+
 - - - 
 
 #Tipos de blocos de informação
