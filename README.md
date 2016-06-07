@@ -34,6 +34,34 @@ A estrutura de cada bloco de informação, contido no arquivo de saída (log) po
 
 
 
+## Clipboard
+#### Blocos de informação para rastreio de area de transferência
+
+|  ID |  Resumo     |  Descrição e dados contidos |
+|:--------------:|------------|-----------------------------|
+|      t:        |   Armazena o valor capturado da area de transferência | - Não possui parâmetros, apenas o bloco de texto entre `[` `]`. O conteúdo dentro desse bloco é o que foi capturado da area de transferência do usuário, e esta codificado em base64, para garantir integridade do que foi capturado. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
