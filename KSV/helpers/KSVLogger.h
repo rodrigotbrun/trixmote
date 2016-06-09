@@ -50,6 +50,12 @@ public:
     void write(float data);
 
     // Escreve no arquivo de log
+    void write(bool data);
+
+    // Escreve no arquivo de log
+    void write(int64_t data);
+
+    // Escreve no arquivo de log
     void write(std::string data);
 
     // Escreve no arquivo de log e quebra a linha no final
@@ -60,6 +66,12 @@ public:
 
     // Escreve no arquivo de log e quebra a linha no final
     void writeln(float data);
+
+    // Escreve no arquivo de log e quebra a linha no final
+    void writeln(bool data);
+
+    // Escreve no arquivo de log e quebra a linha no final
+    void writeln(int64_t data);
 
     // Escreve no arquivo de log e quebra a linha no final
     void writeln(const char *data);

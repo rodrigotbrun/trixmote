@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51A6E2707B3A0FAA1FC6EC05 /* KSVArgumentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6EABD49E7592919811107 /* KSVArgumentation.cpp */; };
+		51A6E22C3B05ED6DD1BED2CD /* KSVMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E36009E09B16AE15F72F /* KSVMouse.cpp */; };
 		51A6E293277F755B63BA393F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6E874FE918002DB109FB7 /* CoreGraphics.framework */; };
-		51A6E2E8DD88AC19ABF4ACBB /* KSVPresenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E4C12D7CEDA3AC111CDE /* KSVPresenter.cpp */; };
-		51A6E349FB2F9C62344059CB /* KSVClipboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6EDA2C9C5477EEF2531F8 /* KSVClipboard.cpp */; };
+		51A6E2ADCD645BDCACD228DF /* KSVPresenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6ED91F42FDDC4FFBF099D /* KSVPresenter.cpp */; };
 		51A6E3F703A9EAF475024C39 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E98431B748C5D43ACE6C /* main.cpp */; };
 		51A6E42C3A620365DE7875DA /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6E898A2448C173BEF79A2 /* ApplicationServices.framework */; };
-		51A6E430E48305CB8E535D54 /* KSVKeylogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6EE964A17F27262F55A26 /* KSVKeylogger.cpp */; };
 		51A6E640448CC70E2848D811 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6E12870B479FC1C943686 /* CFNetwork.framework */; };
-		51A6E832F522F481BE29AAF1 /* KSVKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E5010AA73150F221E208 /* KSVKeyboard.cpp */; };
+		51A6E664E60802B5780D366B /* KSVKeylogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E069A831F3E4D7018483 /* KSVKeylogger.cpp */; };
+		51A6E6723B705D6E50C5417F /* KSVArgumentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E6CCCA5081AFF8FF6F11 /* KSVArgumentation.cpp */; };
+		51A6E80D86B2B1C8392222ED /* KSVClipboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E69FBD6C7D88F9FE0905 /* KSVClipboard.cpp */; };
+		51A6E8365AE91A689644B804 /* KSVKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E48662CA1E95F13AC281 /* KSVKeyboard.cpp */; };
+		51A6E84387C307A72467D8B1 /* KNOW_ISSUES.md in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E397E619562B7FA081D1 /* KNOW_ISSUES.md */; };
 		51A6EA69CF3AF852AC643205 /* base64.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E9987E2D015120D6F57D /* base64.cpp */; };
-		51A6EB2EC16885FA9BB2C2B5 /* KSVSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E4E705F209F6CA75852A /* KSVSocket.cpp */; };
-		51A6EC7B5CF3446A5F1125C6 /* KSVMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E09AC609BC7E87FF3EE1 /* KSVMouse.cpp */; };
-		51A6EE0C69AE73A807C9AF24 /* KSVLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E62113CEC8AFFFF8B92F /* KSVLogger.cpp */; };
+		51A6EB986669BF39089A3843 /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E97AB9D0573B91453091 /* TODO.md */; };
+		51A6EE54A8769CF37CB77BFC /* KSVLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6ED3321FAE17616675F79 /* KSVLogger.cpp */; };
+		51A6EEFB4D12B98B01B7F4DE /* KSVSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6EFCA811D76A9B1A69DC5 /* KSVSocket.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,31 +39,33 @@
 
 /* Begin PBXFileReference section */
 		51A6E03CE0987B9FFEBA5D39 /* ksv */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ksv; sourceTree = BUILT_PRODUCTS_DIR; };
-		51A6E04FA3460F3C636FF46C /* KSVArgumentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVArgumentation.h; sourceTree = "<group>"; };
-		51A6E09AC609BC7E87FF3EE1 /* KSVMouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVMouse.cpp; sourceTree = "<group>"; };
+		51A6E069A831F3E4D7018483 /* KSVKeylogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVKeylogger.cpp; path = runners/KSVKeylogger.cpp; sourceTree = "<group>"; };
 		51A6E12870B479FC1C943686 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		51A6E23CC8B1E0FF32E8CBB6 /* KSVKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVKeyboard.h; sourceTree = "<group>"; };
-		51A6E38F5E18FCA2F2F73D41 /* KSVClipboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVClipboard.h; sourceTree = "<group>"; };
-		51A6E4C12D7CEDA3AC111CDE /* KSVPresenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVPresenter.cpp; sourceTree = "<group>"; };
-		51A6E4E705F209F6CA75852A /* KSVSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVSocket.cpp; sourceTree = "<group>"; };
-		51A6E5010AA73150F221E208 /* KSVKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVKeyboard.cpp; sourceTree = "<group>"; };
-		51A6E62113CEC8AFFFF8B92F /* KSVLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVLogger.cpp; sourceTree = "<group>"; };
-		51A6E65E99191D9E246AA666 /* KSVPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVPresenter.h; sourceTree = "<group>"; };
+		51A6E243F6403814C27A8086 /* KSVKeylogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVKeylogger.h; path = runners/KSVKeylogger.h; sourceTree = "<group>"; };
+		51A6E2C3C6C5C1E46C182BBF /* KSVClipboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVClipboard.h; path = runners/KSVClipboard.h; sourceTree = "<group>"; };
+		51A6E36009E09B16AE15F72F /* KSVMouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVMouse.cpp; path = components/KSVMouse.cpp; sourceTree = "<group>"; };
+		51A6E397E619562B7FA081D1 /* KNOW_ISSUES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = KNOW_ISSUES.md; sourceTree = "<group>"; };
+		51A6E4502E6581DBC2738CFE /* KSVKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVKeyboard.h; path = components/KSVKeyboard.h; sourceTree = "<group>"; };
+		51A6E478DBED1227C39E8649 /* KSVSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVSocket.h; path = runners/KSVSocket.h; sourceTree = "<group>"; };
+		51A6E48662CA1E95F13AC281 /* KSVKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVKeyboard.cpp; path = components/KSVKeyboard.cpp; sourceTree = "<group>"; };
+		51A6E51BE87011B6C20ACC0C /* KSVPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVPresenter.h; path = presenter/KSVPresenter.h; sourceTree = "<group>"; };
+		51A6E69FBD6C7D88F9FE0905 /* KSVClipboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVClipboard.cpp; path = runners/KSVClipboard.cpp; sourceTree = "<group>"; };
+		51A6E6CCCA5081AFF8FF6F11 /* KSVArgumentation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVArgumentation.cpp; path = helpers/KSVArgumentation.cpp; sourceTree = "<group>"; };
 		51A6E6D42F07A3DB9BF286D7 /* KSVConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVConfig.h; sourceTree = "<group>"; };
 		51A6E874FE918002DB109FB7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		51A6E883659E1B38665B0C38 /* KSVArgumentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVArgumentation.h; path = helpers/KSVArgumentation.h; sourceTree = "<group>"; };
 		51A6E898A2448C173BEF79A2 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
-		51A6E9016B960B609E211E7E /* KSVKeylogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVKeylogger.h; sourceTree = "<group>"; };
+		51A6E97AB9D0573B91453091 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		51A6E98431B748C5D43ACE6C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		51A6E9987E2D015120D6F57D /* base64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = base64.cpp; path = thirdparty/base64.cpp; sourceTree = "<group>"; };
-		51A6EA694C896699967ADB59 /* KSVSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVSocket.h; sourceTree = "<group>"; };
+		51A6EA093CC98DDEBC684266 /* KSVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVLogger.h; path = helpers/KSVLogger.h; sourceTree = "<group>"; };
 		51A6EAAD387A9F781DBB1C6D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		51A6EABD49E7592919811107 /* KSVArgumentation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVArgumentation.cpp; sourceTree = "<group>"; };
 		51A6EB30A9E7B44B30D2ACA5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		51A6EB629088C5F6DBB20E30 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base64.h; path = thirdparty/base64.h; sourceTree = "<group>"; };
-		51A6ECECCDEDC9DA7BE00042 /* KSVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVLogger.h; sourceTree = "<group>"; };
-		51A6EDA2C9C5477EEF2531F8 /* KSVClipboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVClipboard.cpp; sourceTree = "<group>"; };
-		51A6EE964A17F27262F55A26 /* KSVKeylogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KSVKeylogger.cpp; sourceTree = "<group>"; };
-		51A6EF087DC232AB3BC6F143 /* KSVMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSVMouse.h; sourceTree = "<group>"; };
+		51A6ED3321FAE17616675F79 /* KSVLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVLogger.cpp; path = helpers/KSVLogger.cpp; sourceTree = "<group>"; };
+		51A6ED91F42FDDC4FFBF099D /* KSVPresenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVPresenter.cpp; path = presenter/KSVPresenter.cpp; sourceTree = "<group>"; };
+		51A6EEADD8BFA2B5BA9F3FAF /* KSVMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVMouse.h; path = components/KSVMouse.h; sourceTree = "<group>"; };
+		51A6EFCA811D76A9B1A69DC5 /* KSVSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVSocket.cpp; path = runners/KSVSocket.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,25 +106,25 @@
 			isa = PBXGroup;
 			children = (
 				51A6E98431B748C5D43ACE6C /* main.cpp */,
-				51A6EE964A17F27262F55A26 /* KSVKeylogger.cpp */,
-				51A6E9016B960B609E211E7E /* KSVKeylogger.h */,
-				51A6EABD49E7592919811107 /* KSVArgumentation.cpp */,
-				51A6E04FA3460F3C636FF46C /* KSVArgumentation.h */,
-				51A6E62113CEC8AFFFF8B92F /* KSVLogger.cpp */,
-				51A6ECECCDEDC9DA7BE00042 /* KSVLogger.h */,
-				51A6E5010AA73150F221E208 /* KSVKeyboard.cpp */,
-				51A6E23CC8B1E0FF32E8CBB6 /* KSVKeyboard.h */,
-				51A6E09AC609BC7E87FF3EE1 /* KSVMouse.cpp */,
-				51A6EF087DC232AB3BC6F143 /* KSVMouse.h */,
-				51A6E4C12D7CEDA3AC111CDE /* KSVPresenter.cpp */,
-				51A6E65E99191D9E246AA666 /* KSVPresenter.h */,
-				51A6EDA2C9C5477EEF2531F8 /* KSVClipboard.cpp */,
-				51A6E38F5E18FCA2F2F73D41 /* KSVClipboard.h */,
-				51A6E4E705F209F6CA75852A /* KSVSocket.cpp */,
-				51A6EA694C896699967ADB59 /* KSVSocket.h */,
 				51A6E6D42F07A3DB9BF286D7 /* KSVConfig.h */,
 				51A6E9987E2D015120D6F57D /* base64.cpp */,
 				51A6EB629088C5F6DBB20E30 /* base64.h */,
+				51A6E243F6403814C27A8086 /* KSVKeylogger.h */,
+				51A6E069A831F3E4D7018483 /* KSVKeylogger.cpp */,
+				51A6E2C3C6C5C1E46C182BBF /* KSVClipboard.h */,
+				51A6E69FBD6C7D88F9FE0905 /* KSVClipboard.cpp */,
+				51A6EFCA811D76A9B1A69DC5 /* KSVSocket.cpp */,
+				51A6E478DBED1227C39E8649 /* KSVSocket.h */,
+				51A6E4502E6581DBC2738CFE /* KSVKeyboard.h */,
+				51A6E48662CA1E95F13AC281 /* KSVKeyboard.cpp */,
+				51A6E36009E09B16AE15F72F /* KSVMouse.cpp */,
+				51A6EEADD8BFA2B5BA9F3FAF /* KSVMouse.h */,
+				51A6E883659E1B38665B0C38 /* KSVArgumentation.h */,
+				51A6E6CCCA5081AFF8FF6F11 /* KSVArgumentation.cpp */,
+				51A6ED3321FAE17616675F79 /* KSVLogger.cpp */,
+				51A6EA093CC98DDEBC684266 /* KSVLogger.h */,
+				51A6ED91F42FDDC4FFBF099D /* KSVPresenter.cpp */,
+				51A6E51BE87011B6C20ACC0C /* KSVPresenter.h */,
 			);
 			path = KSV;
 			sourceTree = "<group>";
@@ -131,6 +135,8 @@
 				51A6EB0CB9530841EE2D04A9 /* Products */,
 				51A6ECC258B00A5640286CD5 /* KSV */,
 				51A6E2F4C77ECCB7039E2A50 /* Frameworks */,
+				51A6E97AB9D0573B91453091 /* TODO.md */,
+				51A6E397E619562B7FA081D1 /* KNOW_ISSUES.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,15 +192,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				51A6E3F703A9EAF475024C39 /* main.cpp in Sources */,
-				51A6E430E48305CB8E535D54 /* KSVKeylogger.cpp in Sources */,
-				51A6E2707B3A0FAA1FC6EC05 /* KSVArgumentation.cpp in Sources */,
-				51A6EE0C69AE73A807C9AF24 /* KSVLogger.cpp in Sources */,
-				51A6E832F522F481BE29AAF1 /* KSVKeyboard.cpp in Sources */,
-				51A6EC7B5CF3446A5F1125C6 /* KSVMouse.cpp in Sources */,
-				51A6E2E8DD88AC19ABF4ACBB /* KSVPresenter.cpp in Sources */,
-				51A6E349FB2F9C62344059CB /* KSVClipboard.cpp in Sources */,
-				51A6EB2EC16885FA9BB2C2B5 /* KSVSocket.cpp in Sources */,
 				51A6EA69CF3AF852AC643205 /* base64.cpp in Sources */,
+				51A6EB986669BF39089A3843 /* TODO.md in Sources */,
+				51A6E84387C307A72467D8B1 /* KNOW_ISSUES.md in Sources */,
+				51A6E664E60802B5780D366B /* KSVKeylogger.cpp in Sources */,
+				51A6E80D86B2B1C8392222ED /* KSVClipboard.cpp in Sources */,
+				51A6EEFB4D12B98B01B7F4DE /* KSVSocket.cpp in Sources */,
+				51A6E8365AE91A689644B804 /* KSVKeyboard.cpp in Sources */,
+				51A6E22C3B05ED6DD1BED2CD /* KSVMouse.cpp in Sources */,
+				51A6E6723B705D6E50C5417F /* KSVArgumentation.cpp in Sources */,
+				51A6EE54A8769CF37CB77BFC /* KSVLogger.cpp in Sources */,
+				51A6E2ADCD645BDCACD228DF /* KSVPresenter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

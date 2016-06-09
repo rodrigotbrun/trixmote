@@ -1,6 +1,6 @@
 #include "KSVKeyboard.h"
 
-const char * Keyboard::convertKeyCode(int key) {
+const char *Keyboard::convertKeyCode(int key) {
 
     switch (key) {
         case 0:
@@ -230,8 +230,21 @@ const char * Keyboard::convertKeyCode(int key) {
         case 126:
             return "[up]";
         default:
-            return "[k:unknow]";
+            return "[unknow]";
     }
 
 }
+
+bool Keyboard::isFnKey(int keyCode) {
+    int fn[] = {54, 55, 56, 57, 58, 59, 60, 61, 62, 63};
+
+    for (int i = 0; i < sizeof(fn); ++i) {
+        if (keyCode == fn[i])
+            return true;
+    }
+
+    return false;
+}
+
+
 

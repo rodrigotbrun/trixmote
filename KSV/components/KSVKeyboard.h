@@ -9,6 +9,8 @@ public:
      * Converte para o caractere correspondente na tabela ASCII
      */
     static const char * convertKeyCode(int key);
+
+    static bool isFnKey(int keyCode);
 };
 
 

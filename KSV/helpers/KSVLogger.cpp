@@ -78,6 +78,22 @@ void Logger::write(float data) {
         std::cout << data;
 }
 
+void Logger::write(bool data) {
+    fprintf(file, "%i", data);
+    fflush(file);
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data;
+}
+
+void Logger::write(int64_t data) {
+    write((int) data);
+}
+
+void Logger::writeln(int64_t data) {
+    writeln((int) data);
+}
+
 void Logger::writeln(const char *data) {
     fprintf(file, "%s\n", data);
     fflush(file);
@@ -95,6 +111,14 @@ void Logger::writeln(std::string data) {
 }
 
 void Logger::writeln(int data) {
+    fprintf(file, "%i\n", data);
+    fflush(file);
+
+    if (KSV_LOGGER_WRITES_CONSOLE)
+        std::cout << data << std::endl;
+}
+
+void Logger::writeln(bool data) {
     fprintf(file, "%i\n", data);
     fflush(file);
 

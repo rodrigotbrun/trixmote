@@ -15,7 +15,7 @@ const char *Mouse::convertMouseEvent(CGEventType type) {
         case 7:
             return "[right-drag]";
         default:
-            return "[m:unknow]";
+            return "[unknow]";
     }
 
 }
