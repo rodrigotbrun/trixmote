@@ -12,9 +12,13 @@ A estrutura de cada bloco de informação, contido no arquivo de saída (log) po
 - Os blocos podem conter N parâmetros ( separados por `:` ) ou um parâmetro do tipo *lista*, que é constituido de uma série de dados separados por um `|` pipe;
 - Todo bloco de anuncio *pode* possuir uma informação genérica, livre de formatação (texto livre ou estruturado em alguns casos, veja a tabela *tipos de blocos de informação*), e possue um espaço específico dentro de cada bloco, que é no *final* do bloco antes do fechamento, também encapsulado por `[` `]`.
 
+`[{  [ id : parâmetros [ texto ]]  [ id : parâmetros [ texto ]] ...  }]`
+
+- Encapsulamento de vários blocos de informação delimitados por `[{` `}]`, indicam um grupo de blocos combinados. Para eventos de teclado um grupo de blocos é o registro de combinações de teclas modificadoras, por exemplo. `SHIFT + a`, para deixar a letra `a` maíuscula.
+
 - - - 
 
-#Tipos de blocos de informação
+#Tipos de blocos de informação/evento
 
 ## Header
 #### Bloco único de informação contendo dados estáticos, de hardware ou software.
@@ -40,8 +44,14 @@ O cabeçalho (header) usa delimitadores diferentes dos blocos de informação no
 
 |  ID |  Resumo     |  Descrição e dados contidos |
 |:--------------:|------------|-----------------------------|
-|      f:        |   Indica uma tecla de função | - O primeiro atributo representa o estado da tecla: 0, quando não existir status, 1 quando a tecla esta no estado "pressionada" e 2 quando esta no status "solto". <br><br> - Quando no status "pressionado" (1) todos os próximos eventos de teclado são considerados como composição do comando (exemplo:  shift + a, ou cmd + space). O evento de composição termina quando o status "solto" (2) é encontrado.<br><br> - No bloco de texto livre, está o nome da tecla pressionada. |
+|      m:        |   Indica uma tecla de função | - No bloco de texto livre, está o nome da tecla pressionada. |
 |      k:        |   Indica uma tecla qualquer do teclado (exceto de função) | - No bloco de texto esta a tecla pressionada, já com conversão aplicada em casos de combinação  shift + a, o valor do bloco de texto será `A`, por exemplo.
+
+*NOTA:* Quando uma tecla modificadora ( command, shift, control, option/alt, etc... ) é ativada, todos os blocos referentes a eventos de Teclado, serão gravados/transmitidos em forma de grupo de bloco, delimitados por `[{` `}]`.
+
+*NOTA 2:* Toda tecla modificadora, é gravada duas vezes dentro do grupo de blocos, a primeira ocorrência representa o momento em que a tecla foi pressionada, e a segunda ocorrência representa quando a tecla é solta, até que a primeira tecla modificadora seja solta, e então o grupo é fechado.
+
+*NOTA 3:* A tecla modificadora `CAPS LOCK` não se aplica ao grupo de blocos de teclas modificadoras, o evento é registrado com um bloco simples: `[m:[caps-on]]` ou `[m:[caps-of]]`, dependendo do estado do `CAPS LOCK`.
 
 ## Clipboard
 #### Blocos de informação para rastreio de area de transferência
@@ -50,6 +60,8 @@ O cabeçalho (header) usa delimitadores diferentes dos blocos de informação no
 |:--------------:|------------|-----------------------------|
 |      t:        |   Armazena o valor capturado da area de transferência | - Não possui parâmetros, apenas o bloco de texto entre `[` `]`. O conteúdo dentro desse bloco é o que foi capturado da area de transferência do usuário, e esta codificado em base64, para garantir integridade do que foi capturado. |
 
+
+*NOTA:* Quando o KSV é iniciado, e a area de transferência do usuário não estiver vazia, o primeiro evento registrado é o que esta na area de transferência.
 
 ## Terminal
 #### Blocos de informação para comandos de terminal
@@ -87,8 +99,8 @@ O cabeçalho (header) usa delimitadores diferentes dos blocos de informação no
 - `[k:[a]]`
     - Este bloco indica uma tecla pressionada pelo usuário uma única ves (não esta no modo de repetição)
 
-- `[f:1[left-shift]][f:2[left-shift]]`
-    - Este bloco indica que a tecla SHIFT da esquerda foi pressionada e solta em seguida.
+- `[{[m:[left-cmd]][k:[a]][m:[left-cmd]]}]`
+    - Este bloco indica que a combinação de teclas `COMMAND + A` foi realizada pelo usuário.
 
 
 

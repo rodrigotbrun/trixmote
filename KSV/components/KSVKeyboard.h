@@ -8,9 +8,11 @@ public:
     /**
      * Converte para o caractere correspondente na tabela ASCII
      */
-    static const char * convertKeyCode(int key);
+    static const char *convertKeyCode(int key);
 
-    static bool isFnKey(int keyCode);
+    static bool isMDFKey(int keyCode);
+
+    static int MDFKeyIndex(int keyCode);
 };
 
 

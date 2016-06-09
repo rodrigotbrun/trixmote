@@ -13,4 +13,8 @@
 // Imprimir no console tudo que é gravado em arquivo ou transmitido
 #define KSV_LOGGER_WRITES_CONSOLE   1
 
+// Lista de teclas de função
+#define KSV_MDF_KEYS                 {54, 55, 56, 57, 58, 59, 60, 61, 62, 63}
+#define KSV_MDF_MEMORY_ALLOCATION    10 // Little GB!!  Temporário...
+
 #endif //KSV_KSVCONFIG_H

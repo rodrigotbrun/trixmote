@@ -1,4 +1,5 @@
 #include "KSVKeyboard.h"
+#include "KSVConfig.h"
 
 const char *Keyboard::convertKeyCode(int key) {
 
@@ -235,8 +236,20 @@ const char *Keyboard::convertKeyCode(int key) {
 
 }
 
-bool Keyboard::isFnKey(int keyCode) {
-    int fn[] = {54, 55, 56, 57, 58, 59, 60, 61, 62, 63};
+int Keyboard::MDFKeyIndex(int keyCode) {
+    int fn[] = KSV_MDF_KEYS;
+
+    for (int i = 0; i < sizeof(fn); i++) {
+        if (keyCode == fn[i]) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+bool Keyboard::isMDFKey(int keyCode) {
+    int fn[] = KSV_MDF_KEYS;
 
     for (int i = 0; i < sizeof(fn); ++i) {
         if (keyCode == fn[i])
