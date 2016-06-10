@@ -3,16 +3,16 @@
 namespace Trixmote\Blocks;
 
 /**
- * Class MouseClickBlock
+ * Class KeyboardSimpleKeyBlock
  */
-class MouseClickBlock extends TypeBlock {
+class KeyboardSimpleKeyBlock extends TypeBlock {
 
-    const FORMAT = "/\[c:[0-9]+:[0-9\.]+x[0-9\.]+\[.*\]\]/";
+    const FORMAT = "/\[k:\[.+\]\]/";
     
     /**
      * @return String Identificador do bloco
      */
     public function getBlockID() {
-        return "c";
+        return "k";
     }
 }

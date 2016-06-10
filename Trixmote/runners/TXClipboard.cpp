@@ -57,9 +57,9 @@ void TXCLipboard::operator()() {
                 logger->write(ctData);
 
                 if(TXLogger::instance()->blockNewLineOnGroups) {
-                    logger->write("]");
+                    logger->write("]]");
                 }else{
-                    logger->writeln("]");
+                    logger->writeln("]]");
                 }
 
                 // Armazena o buffer gravado, para o cache para comparar nas iterações seguintes.
