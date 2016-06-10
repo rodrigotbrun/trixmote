@@ -13,7 +13,7 @@
 		51A6E3F703A9EAF475024C39 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E98431B748C5D43ACE6C /* main.cpp */; };
 		51A6E42C3A620365DE7875DA /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6E898A2448C173BEF79A2 /* ApplicationServices.framework */; };
 		51A6E640448CC70E2848D811 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A6E12870B479FC1C943686 /* CFNetwork.framework */; };
-		51A6E664E60802B5780D366B /* KSVKeylogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E069A831F3E4D7018483 /* KSVKeylogger.cpp */; };
+		51A6E664E60802B5780D366B /* KSVInputListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E069A831F3E4D7018483 /* KSVInputListener.cpp */; };
 		51A6E6723B705D6E50C5417F /* KSVArgumentation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E6CCCA5081AFF8FF6F11 /* KSVArgumentation.cpp */; };
 		51A6E80D86B2B1C8392222ED /* KSVClipboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E69FBD6C7D88F9FE0905 /* KSVClipboard.cpp */; };
 		51A6E8365AE91A689644B804 /* KSVKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E48662CA1E95F13AC281 /* KSVKeyboard.cpp */; };
@@ -39,9 +39,9 @@
 
 /* Begin PBXFileReference section */
 		51A6E03CE0987B9FFEBA5D39 /* ksv */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ksv; sourceTree = BUILT_PRODUCTS_DIR; };
-		51A6E069A831F3E4D7018483 /* KSVKeylogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVKeylogger.cpp; path = runners/KSVKeylogger.cpp; sourceTree = "<group>"; };
+		51A6E069A831F3E4D7018483 /* KSVInputListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVInputListener.cpp; path = runners/KSVInputListener.cpp; sourceTree = "<group>"; };
 		51A6E12870B479FC1C943686 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		51A6E243F6403814C27A8086 /* KSVKeylogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVKeylogger.h; path = runners/KSVKeylogger.h; sourceTree = "<group>"; };
+		51A6E243F6403814C27A8086 /* KSVInputListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVInputListener.h; path = runners/KSVInputListener.h; sourceTree = "<group>"; };
 		51A6E2C3C6C5C1E46C182BBF /* KSVClipboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSVClipboard.h; path = runners/KSVClipboard.h; sourceTree = "<group>"; };
 		51A6E36009E09B16AE15F72F /* KSVMouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KSVMouse.cpp; path = components/KSVMouse.cpp; sourceTree = "<group>"; };
 		51A6E397E619562B7FA081D1 /* KNOW_ISSUES.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = KNOW_ISSUES.md; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 				51A6E6D42F07A3DB9BF286D7 /* KSVConfig.h */,
 				51A6E9987E2D015120D6F57D /* base64.cpp */,
 				51A6EB629088C5F6DBB20E30 /* base64.h */,
-				51A6E243F6403814C27A8086 /* KSVKeylogger.h */,
-				51A6E069A831F3E4D7018483 /* KSVKeylogger.cpp */,
+				51A6E243F6403814C27A8086 /* KSVInputListener.h */,
+				51A6E069A831F3E4D7018483 /* KSVInputListener.cpp */,
 				51A6E2C3C6C5C1E46C182BBF /* KSVClipboard.h */,
 				51A6E69FBD6C7D88F9FE0905 /* KSVClipboard.cpp */,
 				51A6EFCA811D76A9B1A69DC5 /* KSVSocket.cpp */,
@@ -195,7 +195,7 @@
 				51A6EA69CF3AF852AC643205 /* base64.cpp in Sources */,
 				51A6EB986669BF39089A3843 /* TODO.md in Sources */,
 				51A6E84387C307A72467D8B1 /* KNOW_ISSUES.md in Sources */,
-				51A6E664E60802B5780D366B /* KSVKeylogger.cpp in Sources */,
+				51A6E664E60802B5780D366B /* KSVInputListener.cpp in Sources */,
 				51A6E80D86B2B1C8392222ED /* KSVClipboard.cpp in Sources */,
 				51A6EEFB4D12B98B01B7F4DE /* KSVSocket.cpp in Sources */,
 				51A6E8365AE91A689644B804 /* KSVKeyboard.cpp in Sources */,
