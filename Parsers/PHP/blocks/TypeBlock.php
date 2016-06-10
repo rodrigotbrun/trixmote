@@ -14,8 +14,8 @@ abstract class TypeBlock {
      * 
      * @param $blockString
      */
-    public function __construct($blockString) {
-        $this->stringBlock = $blockString;
+    public function __construct($bs) {
+        $this->stringBlock = $bs;
     }
 
     /**

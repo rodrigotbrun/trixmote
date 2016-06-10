@@ -1,5 +1,5 @@
 {
-  "name": "rodrigotbrun/ksv-php-parser",
+  "name": "rodrigotbrun/trixmote-php-parser",
   "description": "Parser para arquivo de Log/Macro do KSV Trixlogger",
   "minimum-stability": "stable",
   "license": "MIT",
