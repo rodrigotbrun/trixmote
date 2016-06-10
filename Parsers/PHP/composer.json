@@ -1,0 +1,15 @@
+{
+  "name": "rodrigotbrun/ksv-php-parser",
+  "description": "Parser para arquivo de Log/Macro do KSV Trixlogger",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rodrigo Brun",
+      "email": "rodrigotbrun@gmail.com"
+    }
+  ],
+  "require": {
+    "cebe/markdown": "1.1.0"
+  }
+}

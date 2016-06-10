@@ -23,7 +23,7 @@ int main(int argc, const char *args[]) {
     }
 
     // Welcome to... K S V!!
-//    Presenter::showHeader();
+    Presenter::showHeader();
 
     Logger *logger = Logger::instance();
     bool useSameLogFile = true;

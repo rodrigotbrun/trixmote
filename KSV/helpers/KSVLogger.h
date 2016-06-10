@@ -12,6 +12,8 @@ class Logger {
     FILE *file;
 
 public:
+    int blockNewLineOnGroups;
+
     Logger() {
     }
 

@@ -9,7 +9,7 @@
 
 void Clipboard::operator()() {
     Logger *logger = Logger::instance();
-    logger->writeln("[[C] CLIPBOARD INITIALIZED]");
+//    logger->writeln("[[C] CLIPBOARD INITIALIZED]");
 
     FILE *pop;
     char buffer[KSV_CLIPBOARD_MAX_BYTES];
@@ -55,7 +55,12 @@ void Clipboard::operator()() {
                 logger->write("[t:");
                 logger->write("[");
                 logger->write(ctData);
-                logger->writeln("]");
+
+                if(Logger::instance()->blockNewLineOnGroups) {
+                    logger->write("]");
+                }else{
+                    logger->writeln("]");
+                }
 
                 // Armazena o buffer gravado, para o cache para comparar nas iterações seguintes.
                 strcpy(cachedBuffer, ctData_cStr);
