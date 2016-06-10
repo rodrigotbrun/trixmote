@@ -1,21 +1,21 @@
-#ifndef KSV_KEYLOGGER_H
-#define KSV_KEYLOGGER_H
+#ifndef TRIX_INPUTLISTENER_H
+#define TRIX_INPUTLISTENER_H
 
 #include <fstream>
 #include <CoreGraphics/CoreGraphics.h>
-#include "KSVLogger.h"
+#include "TXLogger.h"
 
 /**
- * Classe Keylogger, observa e registra eventos de INPUT em Teclado e Mouse.
+ * Classe TXInputListener, observa e registra eventos de INPUT em Teclado e TXMouse.
  */
-class Keylogger {
+class TXInputListener {
 
 public:
 
-    Keylogger() {
+    TXInputListener() {
     }
 
-    virtual ~Keylogger() {
+    virtual ~TXInputListener() {
         // TODO - Liberar memória aqui.
     }
 
@@ -35,7 +35,7 @@ public:
     static CGEventRef CGMouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon);
 
     // Analísa grupo de teclas modificadoras
-    static void CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRef event, const char *parsedKey, int keyCode, Logger *logger);
+    static void CGKeyboardModifierInputEventCallback(CGEventType type, CGEventRef event, const char *parsedKey, int keyCode, TXLogger *logger);
 };
 
-#endif //KSV_KEYLOGGER_H
+#endif //TRIX_INPUTLISTENER_H

@@ -1,9 +1,9 @@
-#ifndef KSV_MOUSE_H
-#define KSV_MOUSE_H
+#ifndef TRIX_MOUSE_H
+#define TRIX_MOUSE_H
 
 #include <CoreGraphics/CoreGraphics.h>
 
-class Mouse {
+class TXMouse {
 
 public:
     static const char *convertMouseEvent(CGEventType type);
@@ -13,4 +13,4 @@ public:
 };
 
 
-#endif //KSV_MOUSE_H
+#endif //TRIX_MOUSE_H

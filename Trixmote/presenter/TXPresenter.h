@@ -1,7 +1,7 @@
-#ifndef KSV_PRESENTER_H
-#define KSV_PRESENTER_H
+#ifndef TRIX_PRESENTER_H
+#define TRIX_PRESENTER_H
 
-class Presenter {
+class TXPresenter {
 
 public:
 
@@ -16,4 +16,4 @@ public:
 };
 
 
-#endif //KSV_PRESENTER_H
+#endif //TRIX_PRESENTER_H

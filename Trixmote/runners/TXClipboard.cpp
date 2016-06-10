@@ -2,18 +2,18 @@
 #include <stdio.h>
 #include <iostream>
 #include <thread>
-#include "KSVClipboard.h"
-#include "KSVConfig.h"
-#include "KSVLogger.h"
+#include "TXClipboard.h"
+#include "TXConfig.h"
+#include "TXLogger.h"
 #include "base64.h"
 
-void Clipboard::operator()() {
-    Logger *logger = Logger::instance();
+void TXCLipboard::operator()() {
+    TXLogger *logger = TXLogger::instance();
 //    logger->writeln("[[C] CLIPBOARD INITIALIZED]");
 
     FILE *pop;
-    char buffer[KSV_CLIPBOARD_MAX_BYTES];
-    char cachedBuffer[KSV_CLIPBOARD_MAX_BYTES];
+    char buffer[TRIX_CLIPBOARD_MAX_BYTES];
+    char cachedBuffer[TRIX_CLIPBOARD_MAX_BYTES];
 
     int tryCount = 0;
 
@@ -27,15 +27,15 @@ void Clipboard::operator()() {
         }
 
         // Verifica se o limite máximo de falhas ao capturar o OUT do popen for atingido.
-        if (tryCount >= KSV_RETRY_MAX_COUNT) {
-            logger->e("KSVClipboard interrompido. Limite máximo de tentativas atingido!");
+        if (tryCount >= TRIX_RETRY_MAX_COUNT) {
+            logger->e("TRIXClipboard interrompido. Limite máximo de tentativas atingido!");
             break;
         }
 
         std::string ctData;
 
         // Lê o clipboard até o buff limite
-        while (fgets(buffer, KSV_CLIPBOARD_MAX_BYTES, pop)) {
+        while (fgets(buffer, TRIX_CLIPBOARD_MAX_BYTES, pop)) {
             if (strcmp("", buffer) == 0) {
                 continue;
             }
@@ -56,7 +56,7 @@ void Clipboard::operator()() {
                 logger->write("[");
                 logger->write(ctData);
 
-                if(Logger::instance()->blockNewLineOnGroups) {
+                if(TXLogger::instance()->blockNewLineOnGroups) {
                     logger->write("]");
                 }else{
                     logger->writeln("]");
@@ -75,8 +75,8 @@ void Clipboard::operator()() {
 
 }
 
-void Clipboard::wait() {
-    std::this_thread::sleep_for(std::chrono::milliseconds(KSV_CLIPBOARD_INTERVAL));
+void TXCLipboard::wait() {
+    std::this_thread::sleep_for(std::chrono::milliseconds(TRIX_CLIPBOARD_INTERVAL));
 }
 
 

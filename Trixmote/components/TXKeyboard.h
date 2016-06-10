@@ -1,7 +1,7 @@
-#ifndef KSV_KEYBOARD_H
-#define KSV_KEYBOARD_H
+#ifndef TRIX_KEYBOARD_H
+#define TRIX_KEYBOARD_H
 
-class Keyboard {
+class TXKeyboard {
 
 public:
 
@@ -16,4 +16,4 @@ public:
 };
 
 
-#endif //KSV_KEYBOARD_H
+#endif //TRIX_KEYBOARD_H

@@ -1,15 +1,15 @@
-#include "KSVArgumentation.h"
+#include "TXArgumentation.h"
 #include <iostream>
 #include <cstring>
 
 using namespace std;
 
-Argumentation::Argumentation(int c, const char **a) {
+TXArgumentation::TXArgumentation(int c, const char **a) {
     count = c;
     args = (char **) a;
 }
 
-bool Argumentation::hasArg(char *find, int &index) {
+bool TXArgumentation::hasArg(char *find, int &index) {
     for (int i = 0; i < count; ++i) {
 
         if (strcmp(args[i], find) == 0) {
@@ -21,12 +21,12 @@ bool Argumentation::hasArg(char *find, int &index) {
     return false;
 }
 
-bool Argumentation::hasArg(char *find) {
+bool TXArgumentation::hasArg(char *find) {
     int index;
     return hasArg(find, index);
 }
 
-void Argumentation::printArgs() {
+void TXArgumentation::printArgs() {
     cout << "Arguments: ";
 
     for (int i = 0; i < count; ++i) {
@@ -36,7 +36,7 @@ void Argumentation::printArgs() {
     cout << endl;
 }
 
-char *Argumentation::value(char *find) {
+char *TXArgumentation::value(char *find) {
     int index;
 
     if (hasArg(find, index)) {

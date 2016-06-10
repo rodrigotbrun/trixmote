@@ -1,9 +1,9 @@
-#include "KSVMouse.h"
+#include "TXMouse.h"
 
 /**
  * Converte um tipo de mouse para uma string legível
  */
-const char *Mouse::convertMouseEvent(CGEventType type) {
+const char *TXMouse::convertMouseEvent(CGEventType type) {
 
     switch ((int) type) {
         case 1:
@@ -24,7 +24,7 @@ const char *Mouse::convertMouseEvent(CGEventType type) {
 /**
  * Obtem as cordenadas atuais do mouse.
  */
-CGPoint Mouse::getCursorPosition() {
+CGPoint TXMouse::getCursorPosition() {
 
     // Apenas para o SO ter como referencia, criamos um evento em branco
     CGEventRef mousePositionEvent = CGEventCreate(NULL);

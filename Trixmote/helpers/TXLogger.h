@@ -1,23 +1,23 @@
-#ifndef KSV_LOGGER_H
-#define KSV_LOGGER_H
+#ifndef TRIX_LOGGER_H
+#define TRIX_LOGGER_H
 
 #include <string>
 #include <time.h>
 #include <fstream>
 
-class Logger {
+class TXLogger {
 
-    static Logger *s_instance;
+    static TXLogger *s_instance;
     const char *filePath;
     FILE *file;
 
 public:
     int blockNewLineOnGroups;
 
-    Logger() {
+    TXLogger() {
     }
 
-    virtual ~Logger() {
+    virtual ~TXLogger() {
         closeLogFile();
     }
 
@@ -39,8 +39,8 @@ public:
     // Cria/Reabre o arquivo de log, para armazenar os dados.
     void initLogFile(const char *filePath, bool appendMode);
 
-    // Obter a instância singleton do Logger
-    static Logger *instance();
+    // Obter a instância singleton do TXLogger
+    static TXLogger *instance();
 
     // Escreve no arquivo de log
     void write(const char *data);
@@ -87,4 +87,4 @@ public:
 };
 
 
-#endif //KSV_LOGGER_H
+#endif //TRIX_LOGGER_H

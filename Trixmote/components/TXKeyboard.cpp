@@ -1,7 +1,8 @@
-#include "KSVKeyboard.h"
-#include "KSVConfig.h"
+#include <MacTypes.h>
+#include "TXKeyboard.h"
+#include "TXConfig.h"
 
-const char *Keyboard::convertKeyCode(int key) {
+const char *TXKeyboard::convertKeyCode(int key) {
 
     switch (key) {
         case 0:
@@ -236,8 +237,12 @@ const char *Keyboard::convertKeyCode(int key) {
 
 }
 
-int Keyboard::MDFKeyIndex(int keyCode) {
-    int fn[] = KSV_MDF_KEYS;
+void test() {
+
+}
+
+int TXKeyboard::MDFKeyIndex(int keyCode) {
+    int fn[] = TRIX_MDF_KEYS;
 
     for (int i = 0; i < sizeof(fn); i++) {
         if (keyCode == fn[i]) {
@@ -248,8 +253,8 @@ int Keyboard::MDFKeyIndex(int keyCode) {
     return -1;
 }
 
-bool Keyboard::isMDFKey(int keyCode) {
-    int fn[] = KSV_MDF_KEYS;
+bool TXKeyboard::isMDFKey(int keyCode) {
+    int fn[] = TRIX_MDF_KEYS;
 
     for (int i = 0; i < sizeof(fn); ++i) {
         if (keyCode == fn[i])
