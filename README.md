@@ -103,6 +103,7 @@ O cabeçalho (header) usa delimitadores diferentes dos blocos de informação no
 # Testes em vídeo
 
 - [Teste 01 - Dia 11/06/2016](https://www.youtube.com/watch?v=ZPClaOJVuoY)
+
 [![Teste 01 - Dia 11/06/2016](Records/teste1-11062016.png)](https://www.youtube.com/watch?v=ZPClaOJVuoY)
 
 
