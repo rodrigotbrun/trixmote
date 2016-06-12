@@ -27,10 +27,6 @@ Este é o único bloco de informação composto, por vários blocos de informaç
 
 O cabeçalho (header) usa delimitadores diferentes dos blocos de informação normais, é usado `[~` `~]` no lugar.
 
-|  ID |  Resumo     |  Descrição e dados contidos |
-|:--------------:|------------|-----------------------------|
-|      c:        |   Indica um evento de CLICK | - O primeiro atributo é o estado do clique, realizado pelo usuário, 1 para clique simples, 2 para clique duplo, 3 para clique triplo, etc.... <br><br> - O segundo atributo contém as cordenadas X e Y do mouse, no momento da captura do clique ( separados por `x` ). *Importante:* o valor de X ou de Y podem ser *negativos* se o usuário estiver usando dois monitores, por conta do alinhamento.<br><br> - O Terceiro parâmetro é um texto que informa qual é o botão do mouse usado |
-
 ## Mouse
 #### Blocos de informação para eventos de Mouse
 
@@ -93,7 +89,7 @@ O cabeçalho (header) usa delimitadores diferentes dos blocos de informação no
 - `[d:1432.18x-78.0664|1438.12x-78.0664|1446.3x-78.0664|1461.16x-78.0664|1478.26x-78.0664|1493.13x-78.0664|1503.54x-78.0664[left-drag]]`
     - Este bloco indica um evento de clicar e arrastar usando o botão esquerdo do mouse, possue uma lista de cordenadas X e Y percorridas pelo mouse durante o "arrastar".
 
-- `[t:[T2xhIE11bmRvLCBCZW0gVmluZG8gYW8gS1NW]`
+- `[t:[T2xhIE11bmRvLCBCZW0gVmluZG8gYW8gS1NW]]`
     - Este bloco indica que um texto foi capturado da area de transferência, e esta codificado em base64.
 
 - `[k:[a]]`
@@ -101,6 +97,16 @@ O cabeçalho (header) usa delimitadores diferentes dos blocos de informação no
 
 - `[{[m:[left-cmd]][k:[a]][m:[left-cmd]]}]`
     - Este bloco indica que a combinação de teclas `COMMAND + A` foi realizada pelo usuário.
+
+- - - -
+
+# Testes em vídeo
+
+- [Teste 01 - Dia 11/06/2016](https://www.youtube.com/watch?v=ZPClaOJVuoY)
+[![Teste 01 - Dia 11/06/2016](Records/teste1-11062016.png)](https://www.youtube.com/watch?v=ZPClaOJVuoY)
+
+
+
 
 
 
