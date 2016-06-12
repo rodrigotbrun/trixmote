@@ -7,6 +7,9 @@
 // Intervalo (sleep) entre iterações do ouvinte do TXCLipboard. (em Milisegundos)
 #define TRIX_CLIPBOARD_INTERVAL      255
 
+// Intervalo (sleep) entre iterações do ouvinte do TXCLipboard. (em Milisegundos)
+#define TRIX_SCREENCAPTURE_INTERVAL      500
+
 // Quantidade de vezes em que o Trixmote pode tentar registrar novamente um evento caso não tenha sucesso
 #define TRIX_RETRY_MAX_COUNT         3
 

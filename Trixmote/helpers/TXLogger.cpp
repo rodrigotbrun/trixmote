@@ -162,6 +162,29 @@ void TXLogger::clearLogFile() {
 }
 
 
+std::string TXLogger::getTemDir() {
+    return tempDir;
+}
+
+void TXLogger::setTempDir(std::string td) {
+    tempDir = td;
+}
+
+void TXLogger::setImagickBinDir(std::string im) {
+    imagickBinDir = im;
+}
+
+std::string TXLogger::getImagickBinDir() {
+    return imagickBinDir;
+}
+
+
+
+
+
+
+
+
 
 
 

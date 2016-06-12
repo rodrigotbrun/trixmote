@@ -43,6 +43,14 @@
             argument = "/Developer/log.txt"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--tempDir"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Applications/XAMPP/htdocs/PManager-webapp/app/"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
 </Scheme>

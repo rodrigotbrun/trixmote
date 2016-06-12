@@ -14,12 +14,19 @@ class TXLogger {
 public:
     int blockNewLineOnGroups;
 
+    std::string tempDir;
+    std::string imagickBinDir;
+
     TXLogger() {
     }
 
     virtual ~TXLogger() {
         closeLogFile();
     }
+
+    void setTempDir(std::string td);
+
+    std::string getTemDir();
 
     // Log de INFORMACAO para console
     static void i(std::string message);
@@ -84,6 +91,9 @@ public:
     // Fecha o arquivo de log gerado por initLogFile
     void closeLogFile();
 
+    void setImagickBinDir(std::string imagickBinDir);
+
+    std::string getImagickBinDir();
 };
 
 
