@@ -1,5 +1,6 @@
 <?php
 namespace Trixmote;
+use Trixmote\Blocks\TypeBlock;
 
 /**
  * Class Trixmote
@@ -63,27 +64,11 @@ class Trixmote {
         if ($this->validateLogFile()) {
             $file = $this->openFile();
             $out = [];
-            $stringBlocks = preg_match_all("/\[.*\]/", $file, $out);
+            preg_match_all("/\[.*\]/", $file, $out);
             $out = reset($out);
             $i = 0;
             foreach ($out as $b) {
-
-                if (preg_match(\Trixmote\Blocks\MouseClickBlock::FORMAT, $b)) {
-                    $out[$i] = new \Trixmote\Blocks\MouseClickBlock($b);
-                } else if (preg_match(\Trixmote\Blocks\MouseDragBlock::FORMAT, $b)) {
-                    $out[$i] = new \Trixmote\Blocks\MouseDragBlock($b);
-                } else if (preg_match(\Trixmote\Blocks\KeyboardSimpleKeyBlock::FORMAT, $b)) {
-                    $out[$i] = new \Trixmote\Blocks\KeyboardSimpleKeyBlock($b);
-                } else if (preg_match(\Trixmote\Blocks\KeyboardModifierKeyBlock::FORMAT, $b)) {
-                    $out[$i] = new \Trixmote\Blocks\KeyboardModifierKeyBlock($b);
-                } else if (preg_match(\Trixmote\Blocks\ClipboardBlock::FORMAT, $b)) {
-                    $out[$i] = new \Trixmote\Blocks\ClipboardBlock($b);
-                } else if (preg_match(\Trixmote\Blocks\HeaderBlock::FORMAT, $b)) {
-                    $out[$i] = new \Trixmote\Blocks\HeaderBlock($b);
-                } else {
-                    unset($out[$i]);
-                }
-
+                $out[$i] = TypeBlock::detectTypeBlock($b);
                 $i++;
             }
 

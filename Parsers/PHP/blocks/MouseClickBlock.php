@@ -74,4 +74,13 @@ class MouseClickBlock extends TypeBlock {
     public function getBlockID() {
         return "c";
     }
+
+    /**
+     * @return string
+     */
+    public function getMouseButton()
+    {
+        return $this->mouseButton;
+    }
+
 }

@@ -60,4 +60,21 @@ class MouseDragBlock extends TypeBlock {
     public function getBlockID() {
         return "d";
     }
+
+    /**
+     * @return Point
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMouseButton()
+    {
+        return $this->mouseButton;
+    }
+
 }
